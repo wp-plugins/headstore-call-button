@@ -4,7 +4,7 @@
  * Description: A widget that displays the call Button.
  * Version: 0.1
  * Author: Kelian Maissen
- */
+**/
 
 
 add_action( 'widgets_init', 'headstore_widget' );
