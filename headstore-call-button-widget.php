@@ -3,7 +3,7 @@
  * Plugin Name: Headstore Call Button Widget
  * Description: A widget that displays the call Button.
  * Version: 0.1
- * Author: Kelian Maissen
+ * Author: Kelian Maissen, Headstore AG
 **/
 
 

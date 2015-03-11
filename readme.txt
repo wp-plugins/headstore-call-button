@@ -1,5 +1,5 @@
 === Headstore Call Button Widget ===
-Contributors: mrvv
+Contributors: Headstore
 Tags: headstore, call button, widget
 Requires at least: 3.0.1
 Tested up to: 3.4
