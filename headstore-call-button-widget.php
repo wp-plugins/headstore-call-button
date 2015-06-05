@@ -2,8 +2,10 @@
 /**
  * Plugin Name: Headstore Call Button Widget
  * Description: A widget that displays the call Button.
- * Version: 0.1
- * Author: Kelian Maissen, Headstore AG
+ * Version: 0.2
+ * Author: 
+ 	0.1 Kelian Maissen, Headstore AG
+ 	0.2 Renato Giuliani, Headstore AG
 **/
 
 
@@ -38,11 +40,18 @@ class Main_Widget extends WP_Widget {
 		if ( $title )
 		echo $before_title . $title . $after_title;
 			
+		// params are now atributes of the div tag (allows for more than one buttons on one page) - rg 02-05-2015	
+		
 		//Display the code 	
+		$div_params = '';
+		foreach( $instance['embed_params_array'] as $key2 => $value2) {
+			if($value2 != "")
+			{
+			$div_params .= 'data-'.$key2.'"="'.$value2.'" ';
+			}
+		} 
 		
-	
-		
-		echo '<div id="callmeButton"></div>';
+		echo '<div class="callme-button" data-group="'.$instance['group'].'" '.$div_params.'></div>';
 	
 		echo $after_widget;
 	}
@@ -76,18 +85,9 @@ class Main_Widget extends WP_Widget {
 			}	
 		}
 		
-		$embed_script_url = '//app.headstore.com/callme/callme.js?id='.$instance['group'];
-			 
-		foreach( $instance['embed_params_array'] as $key2 => $value2) {
-			if($value2 != "")
-			{
-			$embed_script_url .= '&'.$key2.'='.$value2;
-			}
-		} 
+		// params are now atributes of the div tag (allows for more than one buttons on one page) - rg 02-05-2015
+		$instance['embed_script'] = '//app.headstore.com/callme/callme.js'; 
 		
-		$instance['embed_script'] = $embed_script_url;
-		
-
 		return $instance;
 	}
 
