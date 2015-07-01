@@ -2,8 +2,8 @@
 Contributors: Headstore
 Tags: headstore, call button, widget
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 0.2
+Tested up to: 4.2.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,4 +39,5 @@ Save the Widget Settings after every little change so the Interface can Update.
 * Dynamically gets Interface from Headstore API
 = 0.2 =
 * Allow multiple buttons on one page.
-
+= 0.3 =
+* Improved robustness of wp-admin functionality.

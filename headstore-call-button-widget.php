@@ -2,10 +2,11 @@
 /**
  * Plugin Name: Headstore Call Button Widget
  * Description: A widget that displays the call Button.
- * Version: 0.2
+ * Version: 0.3
  * Author: 
  	0.1 Kelian Maissen, Headstore AG
  	0.2 Renato Giuliani, Headstore AG
+ 	0.3 Renato Giuliani, Headstore AG
 **/
 
 
@@ -18,6 +19,12 @@ function headstore_widget() {
 
 class Main_Widget extends WP_Widget {
 
+	// increment when changing plugin code manually.
+	var $debugVersion = 6;
+	
+	
+	
+
 	function Main_Widget() {
 		$widget_ops = array( 'classname' => 'headstore', 'description' => __('Add a Headstore Call Button.', 'headstore') );
 		
@@ -26,7 +33,16 @@ class Main_Widget extends WP_Widget {
 		$this->WP_Widget( 'headstore-widget', __('Headstore Call Button Widget', 'headstore'), $widget_ops, $control_ops );
 	}
 	
+	function validateInstance($instance) {
+		if ( $this->debugVersion != $instance['debugVersion']) {
+			$instance = array( 
+				'debugVersion' => $this->debugVersion);
+		}
+	}
+	
 	function widget( $args, $instance ) {
+		$this->validateInstance($instance);
+		
 		extract( $args );
 
 		//Our variables from the widget settings.
@@ -93,19 +109,20 @@ class Main_Widget extends WP_Widget {
 
 	
 	function form( $instance ) {
-
+		$this->validateInstance($instance);
 		
-		//Set up some default widget settings.
+		 //Set up some default widget settings.
 		$defaults = array( 
 		'title' => __('Call Me', 'example'), 
 		'username' => __('', 'example'),
 		
 		'embed_script' => __('', 'embed_script'),
-		'embed_code' => __('', 'embed_code'));
-	
+		'embed_code' => __('', 'embed_code'),
+		'debugVersion' => __($this->debugVersion, 'debugVersion'));
 		
 		
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
+		
 		
 		?>
 		<p>
@@ -140,12 +157,16 @@ class Main_Widget extends WP_Widget {
             <?php
 			
 			$json = file_get_contents('https://app.headstore.com/api/callme/wp/'.$instance['username'].'/');
+			if (!$json) {
+				return;
+			}
+			
 			$jsonarray = json_decode($json, true);
 	
 	
-			if(!array_key_exists('groups',$jsonarray))
+			if(null == $jsonarray || !array_key_exists('groups',$jsonarray))
 			{ 
-				exit(); 
+				return;
 			}
 			
 			?>
