@@ -3,7 +3,7 @@ Contributors: Headstore
 Tags: headstore, call button, widget
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,21 +16,17 @@ The Call Button can be customized in the Widget Settings.
 
 The user must have a Headstore account to use this Widget.
 
-== Installation ==
+Compatibility: Headstore 1.6
 
+== Installation ==
 
 
 1. Upload `headstore-call-button-widget.php` to the `/wp-content/plugins/` directory
 2. Activate the Widget through the 'Plugins' menu in WordPress
 3. Configure the Widget through the 'Widget' menu in WordPress
 
-it's recommended to Save the Widget Settings after every little change so the Interface can Update.
 
 == Frequently Asked Questions ==
-
-= The Call Button does not display propperly =
-
-Save the Widget Settings after every little change so the Interface can Update. 
 
 
 == Changelog ==
@@ -41,3 +37,6 @@ Save the Widget Settings after every little change so the Interface can Update.
 * Allow multiple buttons on one page.
 = 0.3 =
 * Improved robustness of wp-admin functionality.
+= 0.4 =
+* Support for Individual experts. 
+* Auto saving widget form.

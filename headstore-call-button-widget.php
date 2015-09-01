@@ -2,11 +2,12 @@
 /**
  * Plugin Name: Headstore Call Button Widget
  * Description: A widget that displays the call Button.
- * Version: 0.3
+ * Version: 0.4
  * Author: 
  	0.1 Kelian Maissen, Headstore AG
  	0.2 Renato Giuliani, Headstore AG
  	0.3 Renato Giuliani, Headstore AG
+	0.4 Renato Giuliani, Headstore AG
 **/
 
 
@@ -19,11 +20,7 @@ function headstore_widget() {
 
 class Main_Widget extends WP_Widget {
 
-	// increment when changing plugin code manually.
-	var $debugVersion = 6;
-	
-	
-	
+	var $headstoreBackendSubdomain = 'dev1';
 
 	function Main_Widget() {
 		$widget_ops = array( 'classname' => 'headstore', 'description' => __('Add a Headstore Call Button.', 'headstore') );
@@ -31,24 +28,23 @@ class Main_Widget extends WP_Widget {
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'headstore-widget' );
 		
 		$this->WP_Widget( 'headstore-widget', __('Headstore Call Button Widget', 'headstore'), $widget_ops, $control_ops );
+		
+		add_action('wp_enqueue_scripts', array($this, 'add_page_scripts'));
 	}
 	
-	function validateInstance($instance) {
-		if ( $this->debugVersion != $instance['debugVersion']) {
-			$instance = array( 
-				'debugVersion' => $this->debugVersion);
-		}
-	}
+	
+  function add_page_scripts(){
+    if(is_active_widget(false, false, $this->id_base, true)){
+      wp_enqueue_script('headstore_script', '//'.$this->headstoreBackendSubdomain.'.headstore.com/callme/callme.js');
+    }           
+  }
+
 	
 	function widget( $args, $instance ) {
-		$this->validateInstance($instance);
-		
 		extract( $args );
 
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
-		
-		wp_enqueue_script( 'headstore_script', $instance['embed_script']);
 		
 		echo $before_widget;
 
@@ -67,7 +63,7 @@ class Main_Widget extends WP_Widget {
 			}
 		} 
 		
-		echo '<div class="callme-button" data-group="'.$instance['group'].'" '.$div_params.'></div>';
+		echo '<div class="callme-button" data-'.($instance['dataFrom']=="COMPANY_GROUP"?"group":"expert").'="'.$instance['expertOrGroup'].'" '.$div_params.'></div>';
 	
 		echo $after_widget;
 	}
@@ -76,17 +72,14 @@ class Main_Widget extends WP_Widget {
 	 
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-
+	
 		//Strip tags from title and name to remove HTML 
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['username'] = strip_tags( $new_instance['username'] );
-		$instance['group'] = strip_tags( $new_instance['group'] );
-		$instance['group_obj'] = strip_tags( $new_instance['group_obj'] );	
+		$instance['expertOrGroup'] = strip_tags( $new_instance['expertOrGroup'] );
+		$instance['dataFrom'] = strip_tags( $new_instance['dataFrom'] );	
 		
 		$instance['embed_params_array'] = $new_instance['embed_params_array'];	
-		
-		$instance['embed_code'] = $new_instance['embed_code'];
-		$instance['embed_script'] = $new_instance['embed_script'];
 		
 		
 		foreach( $instance['embed_params_array'] as $key => $value) { 
@@ -101,104 +94,99 @@ class Main_Widget extends WP_Widget {
 			}	
 		}
 		
-		// params are now atributes of the div tag (allows for more than one buttons on one page) - rg 02-05-2015
-		$instance['embed_script'] = '//app.headstore.com/callme/callme.js'; 
-		
 		return $instance;
 	}
 
 	
 	function form( $instance ) {
-		$this->validateInstance($instance);
 		
 		 //Set up some default widget settings.
 		$defaults = array( 
 		'title' => __('Call Me', 'example'), 
-		'username' => __('', 'example'),
+		'username' => __('', 'example'));
 		
-		'embed_script' => __('', 'embed_script'),
-		'embed_code' => __('', 'embed_code'),
-		'debugVersion' => __($this->debugVersion, 'debugVersion'));
 		
 		
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
-		
-		
 		?>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Widget Title:', 'example'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
-		</p>
-		<?php
+			<p>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Widget Title:', 'example'); ?></label>
+				<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			</p>
 		
-		
-		
-		if($instance['username'] == "")
-		{
-			?>
             
 			<p>
 				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Username:'); ?></label>
-				<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" value="<?php echo $instance['username']; ?>" style="width:100%;" />
+				<input onBlur="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" value="<?php echo $instance['username']; ?>" style="width:100%;" />
 			</p>
-            
-            // Please enter the Username and click Save to proceed.<br /><br /><br /><br />
-
-            <?php
+            <?php   
+		if($instance['username'] == "")
+		{
+			?>
+           Please enter your Headstore username.<br />
+		   If you don't have an account yet, please register at <a href="https://<?php echo $this->headstoreBackendSubdomain;?>.headstore.com/#signup">headstore.com</a> <br /><br /><br />
+			<?php
+			return;
 		}
 		else
 		{
 
-			?>
-            <p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Username:'); ?></label>
-				<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" value="<?php echo $instance['username']; ?>" style="width:100%;" />
-			</p>
-            <?php
+          
 			
-			$json = file_get_contents('https://app.headstore.com/api/callme/wp/'.$instance['username'].'/');
+			$json = file_get_contents('https://'.$this->headstoreBackendSubdomain.'.headstore.com/api/callme/wp/'.$instance['username'].'/');
 			if (!$json) {
+				?>
+				Username not found .<br />
+				If you dont have an account yet, please register at <a href="https://<?php echo $this->headstoreBackendSubdomain;?>.headstore.com/#signup">headstore.com</a> <br /><br /><br />
+			
+			<?php
 				return;
 			}
 			
 			$jsonarray = json_decode($json, true);
 	
 	
-			if(null == $jsonarray || !array_key_exists('groups',$jsonarray))
+			if(null == $jsonarray || !array_key_exists('expertsAndGroups',$jsonarray))
 			{ 
+				?>
+				No Call-Me buttons found for this Username.<br />
+				Go to <a href="https://<?php echo $this->headstoreBackendSubdomain;?>.headstore.com/#signup">headstore.com</a> to create your first Call-Me button.<br /><br /><br />
+			
+				<?php
 				return;
 			}
 			
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'group' ); ?>"><?php _e('Group:'); ?></label>
-                <select id="<?php echo $this->get_field_id( 'group' ); ?>" name="<?php echo $this->get_field_name( 'group' ); ?>"  style="width:100%;">
-                <?php foreach( $jsonarray['groups'] as $group) { ?>
-                <option value="<?php echo $group['webToken']; ?>" <?php if($instance['group'] == $group['webToken']){echo "selected";}?>>
-				<?php echo $group['shortDescription']; ?></option>
+				<label for="<?php echo $this->get_field_id( 'expertOrGroup' ); ?>"><?php _e('Expert/Group:'); ?></label>
+                <select onChange="document.getElementById('<?php echo $this->get_field_id( 'dataFrom' ); ?>').value=this.options[this.selectedIndex].getAttribute('data-from');document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'expertOrGroup' ); ?>" name="<?php echo $this->get_field_name( 'expertOrGroup' ); ?>"  style="width:100%;">
+                <?php foreach( $jsonarray['expertsAndGroups'] as $expertOrGroup) { ?>
+                <option data-from="<?php echo $expertOrGroup['dataFrom']; ?>" value="<?php echo $expertOrGroup['webToken']; ?>" <?php if($instance['expertOrGroup'] == $expertOrGroup['webToken']){echo "selected";}?>>
+				<?php echo ($expertOrGroup['dataFrom']=="INDIVIDUAL_EXPERT"?"Expert":"Group").": ".$expertOrGroup['shortDescription']; ?></option>
                 <?php } ?>
-                </select>         
+                </select>  
+		<input type="hidden" id="<?php echo $this->get_field_id( 'dataFrom' ); ?>" name="<?php echo $this->get_field_name( 'dataFrom' ); ?>" value="<?php echo $instance['username']; ?>">
             </p>   		
             <?php
 			
 			foreach( $jsonarray['params'] as $params) { 
 			
-				//echo $params['name'];
 				
-				if($params['type'] == "SELECT_FROM_GROUP_PROPERTY")
+				if($params['type'] == "SELECT_FROM_CMB_PROPERTY")
 				{
+					
 					?>
 					<label for="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>"><?php _e($params['label']); ?>:</label>
                     
-                    <select id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
+                    <select onChange="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
                     name="<?php echo $this->get_field_name('embed_params_array').'['.$params['name'].']'; ?>" style="width:100%;">
                     <?php 
-					foreach( $jsonarray['groups'] as $group2) 
+					foreach( $jsonarray['expertsAndGroups'] as $expertOrGroup2) 
 					{  
-						if($instance['group'] == $group2['webToken'])
+						if($instance['expertOrGroup'] == $expertOrGroup2['webToken'])
 						{ 
 						
-						if(!in_array($instance['embed_params_array'][$params['name']],$group2[$params['groupPropertyName']]))
+						if(!in_array($instance['embed_params_array'][$params['name']],$expertOrGroup2[$params['icmbpropertyName']]))
 						{
 							$select_option2 = $instance['embed_params_array'][$params['name']];
 							?>
@@ -207,7 +195,7 @@ class Main_Widget extends WP_Widget {
 							<?php
 						}
 						
-						foreach( $group2[$params['groupPropertyName']] as $select_option) 
+						foreach( $expertOrGroup2[$params['icmbpropertyName']] as $select_option) 
 						{ 
 							?>
 							<option value="<?php echo $select_option; ?>" <?php if($instance['embed_params_array'][$params['name']] == $select_option)
@@ -218,7 +206,7 @@ class Main_Widget extends WP_Widget {
 					} 
 					?>
                     </select> 
-                    <input id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'].'2' ); ?>" 
+                    <input onBlur="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'].'2' ); ?>" 
                     name="<?php echo $this->get_field_name('embed_params_array').'['.$params['name'].'2]'; ?>"
                     value="<?php echo ""; ?>" style="width:100%;" />
                 	<?php	
@@ -229,7 +217,7 @@ class Main_Widget extends WP_Widget {
                     
                     <label for="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>"><?php _e($params['label']); ?>:</label>
                     
-                    <select id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
+                    <select onChange="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
                     name="<?php echo $this->get_field_name('embed_params_array').'['.$params['name'].']'; ?>" style="width:100%;">
                     <?php 
 					foreach( $params['options'] as $select_option) 
@@ -249,7 +237,7 @@ class Main_Widget extends WP_Widget {
 				{
 					?>
 					<label for="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>"><?php _e($params['label']); ?>:</label>
-                    <input id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
+                    <input onBlur="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
                     name="<?php echo $this->get_field_name('embed_params_array').'['.$params['name'].']'; ?>"
                     value="<?php echo $instance['embed_params_array'][$params['name']]; ?>" style="width:100%;" />
                     <?php
@@ -257,7 +245,7 @@ class Main_Widget extends WP_Widget {
 				elseif($params['type'] == "CHECKBOX")
 				{
 					?>
-                    <label for="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>"><?php _e($params['label']); ?>:</label>
+                    <label onClick="document.getElementById('widget-<?php echo $this->id?>-savewidget').click()" for="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>"><?php _e($params['label']); ?>:</label>
 					<br />
                     <input class="checkbox" type="checkbox" <?php if($instance['embed_params_array'][$params['name']] == true){echo"checked";} ?> 
                     id="<?php echo $this->get_field_id( 'embed_params_array_'.$params['name'] ); ?>" 
@@ -268,8 +256,19 @@ class Main_Widget extends WP_Widget {
 				?><br /><br /><?php
 				
 			}
+		//Display the preview 	
+		$div_params = '';
+		foreach( $instance['embed_params_array'] as $key2 => $value2) {
+			if($value2 != "")
+			{
+			$div_params .= '&'.$key2.'='.$value2;
+			}
+		} 
+		
+		echo '<iframe src="https://'.$this->headstoreBackendSubdomain.'.headstore.com/callme/?dataFrom='.$instance['dataFrom'].'&preview=1&type=SINGLE_EXPERT&'.($instance['dataFrom']=="COMPANY_GROUP"?"groupId":"expertId").'='.$instance['expertOrGroup'].$div_params.'" width="100%" height="250px" frameborder="0" id="ext-gen1496" se-id="uxiframe-0_0"></iframe>';
+	
+			 
 			
-			//echo $instance['embed_script'];
 		}
 		
 	}
