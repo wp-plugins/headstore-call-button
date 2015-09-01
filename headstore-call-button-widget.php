@@ -20,7 +20,7 @@ function headstore_widget() {
 
 class Main_Widget extends WP_Widget {
 
-	var $headstoreBackendSubdomain = 'dev1';
+	var $headstoreBackendSubdomain = 'app';
 
 	function Main_Widget() {
 		$widget_ops = array( 'classname' => 'headstore', 'description' => __('Add a Headstore Call Button.', 'headstore') );
