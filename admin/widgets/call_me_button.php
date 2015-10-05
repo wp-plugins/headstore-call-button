@@ -3,7 +3,7 @@
 class Call_Me_Button extends WP_Widget {
 	
 	private $plugin_name = 'headstore-call-button';
-	private $version = '1.0.0';
+	private $version = '0.5';
 
 	/**
 	 * Sets up the widgets name etc

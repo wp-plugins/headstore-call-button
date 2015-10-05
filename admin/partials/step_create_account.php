@@ -6,7 +6,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       http://headstore.com/
- * @since      1.0.0
+ * @since      0.4.1
  *
  * @package    Headstore_Config
  * @subpackage Headstore_Config/admin/partials

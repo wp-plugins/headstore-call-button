@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              http://headstore.com/
- * @since             1.0.0
+ * @since             0.4.1
  * @package           Headstore_Config
  *
  * @wordpress-plugin
  * Plugin Name:       Headstore Call-Me Button
  * Plugin URI:        http://headstore.com
  * Description:       Headstore is a plugin for paid video communication. You can place a "Call-Me Button" on your page and "sell your knowledge" directly through the browser.
- * Version:           1.0.0
+ * Version:           0.5
  * Author:            Headstore AG
  * Author URI:        http://headstore.com
  * License:           GPL-2.0+
@@ -64,7 +64,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/headstore-call-button.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    0.4.1
  */
 function run_headstore_config() {
 

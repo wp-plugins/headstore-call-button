@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       http://headstore.com/
- * @since      1.0.0
+ * @since      0.4.1
  *
  * @package    Headstore_Config
  * @subpackage Headstore_Config/includes
@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      0.4.1
  * @package    Headstore_Config
  * @subpackage Headstore_Config/includes
  * @author     Your Name <info@headstore.com>

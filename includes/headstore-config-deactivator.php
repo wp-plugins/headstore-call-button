@@ -4,7 +4,7 @@
  * Fired during plugin deactivation
  *
  * @link       http://headstore.com/
- * @since      1.0.0
+ * @since      0.4.1
  *
  * @package    Plugin_Name
  * @subpackage Plugin_Name/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      0.4.1
  * @package    Plugin_Name
  * @subpackage Plugin_Name/includes
  * @author     Your Name <info@headstore.com>
@@ -27,7 +27,7 @@ class Headstore_Config_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.4.1
 	 */
 	public static function deactivate() {
 

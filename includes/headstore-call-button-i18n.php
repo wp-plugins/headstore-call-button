@@ -7,7 +7,7 @@
  * so that it is ready for translation.
  *
  * @link       http://headstore.com/
- * @since      1.0.0
+ * @since      0.4.1
  *
  * @package    Headstore_Config
  * @subpackage Headstore_Config/includes
@@ -19,7 +19,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @since      1.0.0
+ * @since      0.4.1
  * @package    Headstore_Config
  * @subpackage Headstore_Config/includes
  * @author     Your Name <info@headstore.com>
@@ -29,7 +29,7 @@ class Headstore_Config_i18n {
 	/**
 	 * The domain specified for this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.4.1
 	 * @access   private
 	 * @var      string    $domain    The domain identifier for this plugin.
 	 */
@@ -38,7 +38,7 @@ class Headstore_Config_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.0
+	 * @since    0.4.1
 	 */
 	public function load_plugin_textdomain() {
 
@@ -53,7 +53,7 @@ class Headstore_Config_i18n {
 	/**
 	 * Set the domain equal to that of the specified domain.
 	 *
-	 * @since    1.0.0
+	 * @since    0.4.1
 	 * @param    string    $domain    The domain that represents the locale of this plugin.
 	 */
 	public function set_domain( $domain ) {
