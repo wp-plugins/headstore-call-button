@@ -1,0 +1,216 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: headstore-config\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-21 13:22-0500\n"
+"PO-Revision-Date: 2015-08-21 13:22-0500\n"
+"Last-Translator: \n"
+"Language-Team: Sfotware's Force <info@softwaresforce.com>\n"
+"Language: en_EN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin/headstore-config-admin.php:68
+msgid "Save"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:163
+msgid "Headstore"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:164
+msgid "Account"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:165
+msgid "Add New Account"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:179
+msgid "Headstore Account Info"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:181
+msgid "Experts"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:249
+msgid "Field Name is required"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:255
+#: ../admin/headstore-config-admin.php:487
+msgid "Field Email is required"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:261
+#: ../admin/headstore-config-admin.php:490
+msgid "Field Password is required"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:309
+msgid ""
+"Thank you for downloading the Headstore Plugin. We hope you will be able to "
+"monetize your know-how effectively with this tool. Please follow the "
+"instructions to add your “Call-Me button” to your page."
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:311
+msgid "Create"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:369
+msgid "no keys"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:385
+msgid "The user does not have experts."
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:484
+msgid "The user is activated."
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:499
+msgid "Error"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:576
+#: ../admin/widgets/partials/call_me_button_form.php:12
+msgid "Account:"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:577
+msgid "Experts:"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:578
+#: ../admin/partials/meta_boxes_expert.php:15
+#: ../admin/widgets/partials/call_me_button_form.php:17
+msgid "Give your call button an identifier:"
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:579
+msgid ""
+"If you have multiple 'Call-Me Buttons' the Campaign ID lets you identify "
+"which one is in use. For example if you use the same button on several "
+"sites, you can determine which site the call came from."
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:580
+msgid "Insert "
+msgstr ""
+
+#: ../admin/headstore-config-admin.php:581
+#: ../admin/widgets/partials/call_me_button_form.php:29
+msgid "Design:"
+msgstr ""
+
+#: ../admin/partials/meta_boxes_account.php:19
+msgid "The user is enabled."
+msgstr ""
+
+#: ../admin/partials/meta_boxes_account.php:22
+msgid "The user is disabled."
+msgstr ""
+
+#: ../admin/partials/meta_boxes_account.php:27
+msgid "Create a new account"
+msgstr ""
+
+#: ../admin/partials/meta_boxes_account.php:32
+#: ../admin/partials/step_create_account.php:43
+msgid "Email"
+msgstr ""
+
+#: ../admin/partials/meta_boxes_account.php:37
+#: ../admin/partials/step_create_account.php:51
+msgid "Password"
+msgstr ""
+
+#: ../admin/partials/meta_boxes_expert.php:9
+msgid "Group ID: "
+msgstr ""
+
+#: ../admin/partials/meta_boxes_expert.php:18
+#: ../admin/widgets/partials/call_me_button_form.php:18
+msgid ""
+"If you have multiple \"Call-Me Buttons\" the Campaign ID lets you identify "
+"which one is in use. For example if you use the same button on several "
+"sites, you can determine which site the call came from."
+msgstr ""
+
+#: ../admin/partials/meta_boxes_expert.php:23
+msgid "Design: "
+msgstr ""
+
+#: ../admin/partials/meta_boxes_expert.php:53
+msgid "Shortcode: "
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:20
+msgid "Add Account"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:28
+msgid " A Headstore account is required to use this plugin."
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:29
+msgid ""
+"If you already have an headstore account, please enter the e-mail address "
+"registered to the account."
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:30
+msgid "Otherwise please click"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:30
+msgid "here"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:30
+msgid "to create a new account."
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:36
+msgid "Name"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:43
+msgid "Create Account"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:59
+msgid "Back"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:60
+msgid "Next"
+msgstr ""
+
+#: ../admin/partials/step_create_account.php:61
+msgid "Summit"
+msgstr ""
+
+#: ../admin/widgets/call_me_button.php:12
+msgid "Add a Headstore Call Button."
+msgstr ""
+
+#: ../admin/widgets/call_me_button.php:16
+msgid "Headstore Call Button Widget"
+msgstr ""
+
+#: ../admin/widgets/partials/call_me_button_form.php:7
+msgid "Widget Title:"
+msgstr ""
+
+#: ../admin/widgets/partials/call_me_button_form.php:24
+msgid "Expert:"
+msgstr ""
