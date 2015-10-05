@@ -29,8 +29,6 @@
  */
 class Headstore_Api {
 	
-	private $url_headstore = 'https://app.headstore.com';
-
 	public function __construct() {
 
 	}
@@ -45,7 +43,7 @@ class Headstore_Api {
  				 )
  		);
 		
-		$curl = curl_init($this->url_headstore.'/oauth/token');
+		$curl = curl_init('https://'.hs_backend::domain.'/oauth/token');
 		curl_setopt($curl, CURLOPT_POST, 1);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $parameters);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
@@ -60,11 +58,17 @@ class Headstore_Api {
 	}
 	
 	public function get_experts_list($email = '', $token = '') {
-   
-         $json = file_get_contents($this->url_headstore.'/api/callme/wp/'.$email.'/');
-         $jsonarray = json_decode($json, true);
-		 return $jsonarray;
+   		
+		
+		$curl = curl_init('https://'.hs_backend::domain.'/api/callme-wp/'.$email.'/');
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+   		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Bearer '.$token));
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$json = curl_exec ($curl);
+		curl_close ($curl);
+		$jsonarray = json_decode($json, true);
+		
+		return $jsonarray;
 	}
 	
-
 }

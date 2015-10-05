@@ -2,11 +2,11 @@
     
 
 	$(document).ready(function() {
-		add_options_expert();
+		//add_options_expert();
 	 });
 	 
 	 $( document ).ajaxStop( function() {
-	    add_options_expert();
+		 //add_options_expert();
 	  } );
 	  
 	  

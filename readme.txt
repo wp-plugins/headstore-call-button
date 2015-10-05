@@ -3,7 +3,7 @@ Contributors: Headstore
 Tags: audio, audio-video, billable, broadcast, call button, call-me, chat, click-to-call, communication, contact call, conversation, facebook, google, headstore, linkedIn, live support, live, monetize, online, paid communication, plugin, quicktag, shortcode, sidebar, SIP, skype alternative, support, video chat, video streaming, video, voice, voIP, webcam, webRTC, widget, wordpress
 Requires at least: 3.6
 Tested up to: 4.2.4
-Stable tag: 0.4.1
+Stable tag: 0.5
 License: GPLv2 or later
 
 
@@ -109,7 +109,10 @@ Contact us..
 
 
 == Changelog ==
-0.4.1	new structure
+
+0.5	shortcode support added
+
+0.4.1 new structure
 
 0.3	Improved robustness of wp-admin functionality.
 

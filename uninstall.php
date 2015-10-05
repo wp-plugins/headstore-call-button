@@ -20,7 +20,7 @@
  * @link       http://headstore.com/
  * @since      1.0.0
  *
- * @package    headstore-config
+ * @package    headstore-call-button
  */
 
 // If uninstall not called from WordPress, then exit.

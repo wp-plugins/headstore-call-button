@@ -44,11 +44,15 @@ abstract class shortcode_names {
 	const hs_call_me = 'hs_call_me';
 }
 
-abstract class widge_call_me_fields {
+abstract class widget_call_me_fields {
 	const title = 'title';
 	const username = 'username';
 	const expert = 'expert';
 	const design = 'design';
 	const campaign = 'campaign';
 	const type = 'type';
+}
+
+abstract class hs_backend {
+	const domain = 'dev1.headstore.com';
 }

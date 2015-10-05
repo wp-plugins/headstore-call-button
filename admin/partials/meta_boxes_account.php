@@ -23,7 +23,7 @@
 				<h4><?php _e( 'Login to an existing HEADSTORE account:', $this->plugin_name); ?></h4>
 				<?php _e( 'If you already have another HEADSTORE account, please enter the email address registered to the account.', $this->plugin_name); ?> 
 		   <?php } else { ?>
-			   <?php _e( 'The account that you are currently connected with is displayed below.', $this->plugin_name); ?> 
+			   <!--<?php _e( 'The account that you are currently connected with is displayed below.', $this->plugin_name); ?>--> 
 		   <?php } ?>
 		</div>
 
@@ -35,8 +35,8 @@
 		<div class="wrap">
 		   <label for=""> <?php _e( 'Password', $this->plugin_name ); ?> </label>  <br/>
 		   <input class="text" type="password" id="password_account" name="password_account" value="" />  <br>
-		    <a href="https://app.headstore.com/#password-reset-request/" class="hs-link" target="_blank"><?php _e( 'Forgot your password?', $this->plugin_name); ?></a> <br><br>
-		   <input name="hs-button-connect" type="button" class="button button-primary button-large" id="hs-button-connect" value="<?php _e( 'Login', $this->plugin_name); ?>"> <?php _e( 'This process can take up to one minute to complete.', $this->plugin_name); ?> <br>
+		    <a href="https://<?php echo hs_backend::domain; ?>/#password-reset-request/" class="hs-link" target="_blank"><?php _e( 'Forgot your password?', $this->plugin_name); ?></a> <br><br>
+		   <input name="hs-button-connect" type="button" class="button button-primary button-large" id="hs-button-connect" value="<?php  if($message_create) { _e( 'Connect', $this->plugin_name);} else { _e( 'Reconnect', $this->plugin_name);} ?>"> <!--<?php _e( 'This process can take up to one minute to complete.', $this->plugin_name); ?>--> <br>
    
 		 </div>
  
@@ -44,14 +44,14 @@
 		 <div class="wrap">
 		    <h4><?php _e('Create a new HEADSTORE account:',$this->plugin_name); ?></h4>
 		   <?php _e("If you don't have a HEADSTORE account, please create a new account.",$this->plugin_name); ?><br>
-		    <?php _e("You will be redirected to the HEADSTORE website in a new page.",$this->plugin_name); ?><br>
+		    <!-- <?php _e("You will be redirected to the HEADSTORE website in a new page.",$this->plugin_name); ?><br> -->
 		   <?php _e("After creating an account please return to this page and login in above.",$this->plugin_name); ?> <br><br>
-		   	<a href="https://app.headstore.com/#signup" class="button-primary hs-link" target="_blank"><?php _e( 'Create', $this->plugin_name); ?></a>
+		   	<a href="https://<?php echo hs_backend::domain; ?>/#signup" class="button-primary hs-link" target="_blank"><?php _e( 'Create', $this->plugin_name); ?></a>
   
 		 </div>
 		 <?php } ?>
 	</div>
-	
+	<!-- 
     <?php if($token) { ?>
 		<div class="hs-expert-list">
 			 <h3><?php _e( "Expert and group", $this->plugin_name); ?></h3>
@@ -64,5 +64,5 @@
 			 <?php } ?>
 	   </div>
     <?php } ?>
-
+	 -->
 </div>

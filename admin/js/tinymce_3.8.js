@@ -5,12 +5,17 @@
 	tinymce.create('tinymce.plugins.headstore', {
 
 		createControl : function(id, controlManager) {
+			
+			width = 520;
+			height = 600;
+			 
+			 
 			if (id == 'headstore_button') {
 				// creates the button
 				var button = controlManager.createButton('headstore_button', {
 					text: 'Headstore',
 					title : 'Insert Shortcode', // title of the button
-					image : '../wp-content/plugins/headstore-config/images/headstore-icon-blue.png',  // path to the button's image
+					image : '../wp-content/plugins/headstore-call-button/images/headstore-icon-blue.png',  // path to the button's image
 					onclick : function() {
 						// triggers the thickbox
 						hs_caculate_width_and_height();
@@ -39,8 +44,8 @@
 		var width = jQuery(window).width(), 
 	        height = jQuery(window).height(), 
 	        width = ( 720 < width ) ? 720 : width;
-		width = width - 80;
-		height = height - 84;
+		width = width - 40;
+		height = height - 64;
    }
 	   
 })(jQuery)

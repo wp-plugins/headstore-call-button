@@ -1,0 +1,12 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+	
+	.display-iframe {
+		display: none !important;
+	}
+}

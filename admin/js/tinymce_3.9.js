@@ -4,11 +4,14 @@
 	
 	 tinymce.PluginManager.add('headstore', function( editor, url ) {
 		 
+		 width = 520;
+		 height = 600;
+		 
          editor.addButton( 'headstore_button', {
              title: 'Insert Shortcode',
              type: 'button',
  			 icon: false,
-			 image : '../wp-content/plugins/headstore-config/images/headstore-icon-blue.png', 
+			 image : '../wp-content/plugins/headstore-call-button/images/headstore-icon-blue.png', 
 			  onclick : function() {
 					// triggers the thickbox
 				    hs_caculate_width_and_height();
@@ -33,8 +36,8 @@
 			var width = jQuery(window).width(), 
 		        height = jQuery(window).height(), 
 		        width = ( 720 < width ) ? 720 : width;
-			width = width - 80;
-			height = height - 84;
+			width = width - 40;
+			height = height - 64;
 	   }
 	   
 })(jQuery)
