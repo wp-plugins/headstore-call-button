@@ -54,5 +54,5 @@ abstract class widget_call_me_fields {
 }
 
 abstract class hs_backend {
-	const domain = 'dev1.headstore.com';
+	const domain = 'app.headstore.com';
 }
